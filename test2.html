@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> new document </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+  <script type="text/javascript">
+
+    window.onload = function () {
+      var rows = document.getElementsByTagName("tr");
+      for (var i = 1; i < rows.length; i++) {
+        rows[i].setAttribute("onmouseover", "changecolor(this)");
+        rows[i].setAttribute("onmouseout", "deletecolor(this)");
+        remove();
+      }
+    }
+    function changecolor(obj) {
+      obj.style.background = "#f2f2f2";
+    }
+    function deletecolor(obj) {
+      obj.style.background = "#fff";
+    }
+
+    function addrow() {
+      var xh = prompt("请输入学号");
+      var xm = prompt("请输入姓名");
+      var b = document.getElementById("table");
+      var c = document.createElement("tr");
+      var d = document.createElement("td");
+      var e = document.createElement("td");
+      var f = document.createElement("td");
+      var g = document.createElement("a");
+      var h = document.createTextNode("删除");
+      d.innerHTML=xh;
+      e.innerHTML=xm; 
+      g.setAttribute("href", "javascript:;");
+      b.appendChild(c);
+      c.appendChild(d);
+      c.appendChild(e);
+      c.appendChild(f);
+      f.appendChild(g);
+      g.appendChild(h);
+      remove();
+    }
+
+    function remove(){
+      var aa = document.getElementsByTagName("a");
+      for(var j=0;j<aa.length;j++){
+        aa[j].onclick = function(){
+          this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <table border="1" width="50%" id="table">
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>操作</th>
+    </tr>
+
+    <tr>
+      <td>xh001</td>
+      <td>王小明</td>
+      <td><a href="javascript:;">删除</a></td>
+      <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+    <tr>
+      <td>xh002</td>
+      <td>刘小芳</td>
+      <td><a href="javascript:;">删除</a></td>
+      <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+  </table>
+  <input type="button" value="添加一行" onclick="addrow()"/>
+  <!--在添加按钮上添加点击事件  -->
+</body>
+
+</html>
